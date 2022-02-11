@@ -1,39 +1,37 @@
 import axios from "axios";
-import { response } from "express";
 
 const Tabs = (topics) => {
-  // TASK 3
+  const parentElement = document.createElement("div");
+  parentElement.classList.add("topics");
+  
+  for (let i = 0; i < topics.length; i++) {
+    const tabs = document.createElement("div");
+    parentElement.appendChild(tabs);
+    tabs.classList.add("tab");
+    tabs.textContent = topics[i];
+    console.log(tabs);
+  }
+  return parentElement;
+};
+
+// TASK 3
   // ---------------------
   // Implement this function which takes an array of strings ("topics") as its only argument.
-  const newTopics = topics.forEach((element) => {
-    const parentElement = document.createElement("div");
-    const tabs = document.createElement("div");
 
-    parentElement.appendChild(tabs);
+// As an example, if the topics passed are ['javascript', 'bootstrap', 'technology']
 
-    parentElement.classList.add("topics");
-    tabs.classList.add("tab");
+// then the function returns the markup below.
 
-    tabs.textContent = element;
+// The tags used, the hierarchy of elements and their attributes must match the provided markup!
 
-    return parentElement;
-  });
-  // As an example, if the topics passed are ['javascript', 'bootstrap', 'technology']
+// The text inside elements will be set using their `textContent` property (NOT `innerText`).
 
-  // then the function returns the markup below.
-
-  // The tags used, the hierarchy of elements and their attributes must match the provided markup!
-
-  // The text inside elements will be set using their `textContent` property (NOT `innerText`).
-
-  // <div class="topics">
-  //   <div class="tab">javascript</div>
-  //   <div class="tab">bootstrap</div>
-  //   <div class="tab">technology</div>
-  // </div>
-  //
-  return newTopics;
-};
+// <div class="topics">
+//   <div class="tab">javascript</div>
+//   <div class="tab">bootstrap</div>
+//   <div class="tab">technology</div>
+// </div>
+//
 
 // TASK 4
 // ---------------------
@@ -47,11 +45,9 @@ const tabsAppender = (selector) => {
   axios
     .get(`http://localhost:5000/api/topics`)
     .then((response) => {
-      response.forEach((element) => {
-        const newTab = Tabs(element);
-        const entryPoint = document.createElement(selector);
-        entryPoint.appendChild(newTab);
-      });
+      const newTab = response.data;
+      const entryPoint = document.querySelector(selector);
+      entryPoint.appendChild(Tabs(newTab));
     })
     .catch((err) => {
       console.error(err);
