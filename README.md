@@ -37,7 +37,7 @@ In meeting the minimum viable product (MVP) specifications listed below, your pr
 
 - [X] Steps 1 and 2 are explained inside the `src/components/header.js` file.
 - [X] Steps 3 and 4 are explained inside the `src/components/tabs.js` file.
-- [ ] Steps 5 and 6 are explained inside the `src/components/card.js` file.
+- [X] Steps 5 and 6 are explained inside the `src/components/card.js` file.
 
 **Important Notes:**
 
@@ -60,7 +60,12 @@ In meeting the minimum viable product (MVP) specifications listed below, your pr
 Demonstrate your understanding of this week's concepts by answering the following questions:
 
 1. What is the DOM?
+    Document Object Model that represents the page, so that programs can change the document structure 
 2. What is an event?
+    An event is also known as a trigger. it is something the user does to interact with the site
 3. What is an event listener?
+    An event listener is what catches the event/trigger. it will then cause something within the code to happen
 4. Why would we convert a NodeList into an Array?
+    to iterate over them easier 
 5. What is a component?
+    A componet is a function that usually create things for us 
