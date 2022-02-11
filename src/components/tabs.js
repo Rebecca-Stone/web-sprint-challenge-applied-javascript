@@ -9,11 +9,20 @@ const Tabs = (topics) => {
     parentElement.appendChild(tabs);
     tabs.classList.add("tab");
     tabs.textContent = topics[i];
-    console.log(tabs);
   }
+  
   return parentElement;
 };
 
+const tabsAppender = (selector) => {
+  axios.get(`http://localhost:5000/api/topics`)
+  .then((res) => {
+    const entryPoint = document.querySelector(selector);
+    const topics = res.data.topics;
+    entryPoint.appendChild(Tabs(topics));
+  })
+  .catch((err) => console.error(err))
+};
 
 
 // TASK 3
@@ -35,16 +44,7 @@ const Tabs = (topics) => {
 // </div>
 //
 
-const tabsAppender = (selector) => {
-  axios.get(`http://localhost:5000/api/topics`)
-  .then((res) => {
-    const entryPoint = document.querySelector(selector);
-    const topics = res.data.topics;
-    console.log(topics);
-    entryPoint.appendChild(Tabs(topics));
-  })
-  .catch((err) => console.error(err))
-};
+
 
 // TASK 4
 // ---------------------
@@ -55,9 +55,3 @@ const tabsAppender = (selector) => {
 //
 
 export { Tabs, tabsAppender };
-
-//    
-//       
-//       }
-//     })
-//     .catch((err) => console.error(err));

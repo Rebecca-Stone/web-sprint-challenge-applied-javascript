@@ -18,6 +18,12 @@ const Header = (title, date, temp) => {
 
   return parentElement;
 };
+
+const headerAppender = (selector) => {
+  const entryPoint = document.querySelector(selector);
+  entryPoint.appendChild(Header(`BloomTech News`, `2/11/22`, `32deg`));
+};
+
 // TASK 1
 // ---------------------
 // Implement this function taking `title`, `date` and `temp` as its 3 args and returning the markup below.
@@ -40,10 +46,6 @@ const Header = (title, date, temp) => {
 
 // It should append the header to the element in the DOM that matches the given selector.
 
-const headerAppender = (selector) => {
-  const entryPoint = document.querySelector(selector);
 
-  entryPoint.appendChild(Header(`BloomTech News`, `2/11/22`, `32deg`));
-};
 
 export { Header, headerAppender };
