@@ -61,7 +61,7 @@ const cardAppender = (selector) => {
     .then((res) => {
       const entryPoint = document.querySelector(selector);
       const article = res.data.articles;
-      // const articleArray = [];
+      
       // Create a card from each and every article object in the response, using the Card component.
       const javaScript = article.javascript;
       const bootStrap = article.bootstrap;
@@ -69,8 +69,7 @@ const cardAppender = (selector) => {
       const jquery = article.jquery;
       const node = article.node;
 
-      // articleArray.push(javaScript, bootStrap, technology, jquery, node);
-
+      // Append each card to the element in the DOM that matches the selector passed to the function.
       for (let i = 0; i < javaScript.length; i++) {
         const newCard = Card(javaScript[i]);
         entryPoint.appendChild(newCard);
@@ -99,7 +98,6 @@ const cardAppender = (selector) => {
     .catch((err) => console.error(err));
 };
 
-// Append each card to the element in the DOM that matches the selector passed to the function.
 //
 
 export { Card, cardAppender };
