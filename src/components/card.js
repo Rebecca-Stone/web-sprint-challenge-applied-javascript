@@ -7,15 +7,18 @@ const Card = (article) => {
   const imgContainer = document.createElement("div");
   const authorImg = document.createElement("img");
   const author = document.createElement("span");
+  const headline = article.headline;
+  const authorPhoto = article.authorPhoto;
+  const authorName = article.authorname;
 
   articleWrapper.classList.add("card");
   articleHeader.classList.add("headline");
   articleAuthor.classList.add("author");
   imgContainer.classList.add("img-container");
 
-  authorImg.src = article.authorPhoto;
-  articleHeader.textContent = article.headline;
-  author.textContent = `By ${article.authorname}`;
+  authorImg.src = authorPhoto;
+  articleHeader.textContent = headline;
+  author.textContent = `By ${authorName}`;
 
   articleWrapper.appendChild(articleHeader);
   articleWrapper.appendChild(articleAuthor);
@@ -29,19 +32,25 @@ const Card = (article) => {
   return articleWrapper;
 };
 
-
-
 const cardAppender = (selector) => {
   axios
     .get(`http://localhost:5000/api/articles`)
     .then((res) => {
       const entryPoint = document.querySelector(selector);
       const article = res.data.articles;
+      const articleArray = [];
 
-      for (let i = 0; i < article.length; i++) {
-        const newCard = Card(article.i);
+      const javaScript = article.javascript;
+      const bootStrap = article.bootstrap;
+      const technology = article.technology;
+      const jquery = article.jquery;
+      const node = article.node;
+
+      articleArray.push(javaScript, bootStrap, technology, jquery, node);
+
+      for (let i = 0; i < articleArray.length; i++) {
+        const newCard = Card(articleArray[i][i]);
         entryPoint.appendChild(newCard);
-        console.log(article.i);
       }
     })
     .catch((err) => console.error(err));
@@ -59,7 +68,7 @@ const cardAppender = (selector) => {
 // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
 
 //
-  // <div class="card">
+// <div class="card">
 //   <div class="headline">{ headline }</div>
 //   <div class="author">
 //     <div class="img-container">
@@ -86,18 +95,7 @@ export { Card, cardAppender };
 
 //ideas
 
-// const articleArray = [];
-
-// const javaScript = articles.javascript;
-// const bootStrap = articles.bootstrap;
-// const technology = articles.technology;
-// const jquery = articles.jquery;
-// const node = articles.node;
-
-// articleArray.push(javaScript, bootStrap, technology, jquery, node);
-// console.log(articleArray);
-
-// articles.forEach((i) => {
+// article.forEach((i) => {
 //   const newArticles = Card(i);
 //   entryPoint.appendChild(newArticles);
 //   console.log(newArticles);
