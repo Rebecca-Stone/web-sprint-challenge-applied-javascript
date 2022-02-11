@@ -3,7 +3,7 @@ import axios from "axios";
 const Tabs = (topics) => {
   const parentElement = document.createElement("div");
   parentElement.classList.add("topics");
-  
+
   for (let i = 0; i < topics.length; i++) {
     const tabs = document.createElement("div");
     parentElement.appendChild(tabs);
@@ -14,9 +14,11 @@ const Tabs = (topics) => {
   return parentElement;
 };
 
+
+
 // TASK 3
-  // ---------------------
-  // Implement this function which takes an array of strings ("topics") as its only argument.
+// ---------------------
+// Implement this function which takes an array of strings ("topics") as its only argument.
 
 // As an example, if the topics passed are ['javascript', 'bootstrap', 'technology']
 
@@ -33,6 +35,17 @@ const Tabs = (topics) => {
 // </div>
 //
 
+const tabsAppender = (selector) => {
+  axios.get(`http://localhost:5000/api/topics`)
+  .then((res) => {
+    const entryPoint = document.querySelector(selector);
+    const topics = res.data.topics;
+    console.log(topics);
+    entryPoint.appendChild(Tabs(topics));
+  })
+  .catch((err) => console.error(err))
+};
+
 // TASK 4
 // ---------------------
 // Implement this function which takes a css selector as its only argument.
@@ -41,17 +54,10 @@ const Tabs = (topics) => {
 // Append the tabs to the element in the DOM that matches the selector passed to the function.
 //
 
-const tabsAppender = (selector) => {
-  axios
-    .get(`http://localhost:5000/api/topics`)
-    .then((response) => {
-      const newTab = response.data;
-      const entryPoint = document.querySelector(selector);
-      entryPoint.appendChild(Tabs(newTab));
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-};
-
 export { Tabs, tabsAppender };
+
+//    
+//       
+//       }
+//     })
+//     .catch((err) => console.error(err));
