@@ -6,7 +6,7 @@ const Card = (article) => {
   const articleAuthor = document.createElement("div");
   const imgContainer = document.createElement("div");
   const authorImg = document.createElement("img");
-  const authorName = document.createElement("span");
+  const author = document.createElement("span");
 
   articleWrapper.classList.add("card");
   articleHeader.classList.add("headline");
@@ -14,14 +14,38 @@ const Card = (article) => {
   imgContainer.classList.add("img-container");
 
   authorImg.src = article.authorPhoto;
-  articleHeader.textContent = `${article.headline}`;
-  authorName.textContent = `By ${article.authorname}`;
+  articleHeader.textContent = article.headline;
+  author.textContent = `By ${article.authorname}`;
+
+  articleWrapper.appendChild(articleHeader);
+  articleWrapper.appendChild(articleAuthor);
+  articleAuthor.appendChild(imgContainer);
+  articleAuthor.appendChild(author);
+  imgContainer.appendChild(authorImg);
 
   articleWrapper.addEventListener("click", () => {
     console.log(articleHeader);
   });
+  return articleWrapper;
 };
 
+
+
+const cardAppender = (selector) => {
+  axios
+    .get(`http://localhost:5000/api/articles`)
+    .then((res) => {
+      const entryPoint = document.querySelector(selector);
+      const article = res.data.articles;
+
+      for (let i = 0; i < article.length; i++) {
+        const newCard = Card(article.i);
+        entryPoint.appendChild(newCard);
+        console.log(article.i);
+      }
+    })
+    .catch((err) => console.error(err));
+};
 // TASK 5
 // ---------------------
 // Implement this function, which should return the markup you see below.
@@ -35,7 +59,7 @@ const Card = (article) => {
 // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
 
 //
-// <div class="card">
+  // <div class="card">
 //   <div class="headline">{ headline }</div>
 //   <div class="author">
 //     <div class="img-container">
@@ -45,35 +69,6 @@ const Card = (article) => {
 //   </div>
 // </div>
 //
-
-const cardAppender = (selector) => {
-  axios.get(`http://localhost:5000/api/articles`).then((res) => {
-    const entryPoint = document.querySelector(selector);
-    const articles = res.data.articles;
-    // const articleArray = [];
-
-    // const javaScript = articles.javascript;
-    // const bootStrap = articles.bootstrap;
-    // const technology = articles.technology;
-    // const jquery = articles.jquery;
-    // const node = articles.node;
-
-    // articleArray.push(javaScript, bootStrap, technology, jquery, node);
-    // console.log(articleArray);
-
-
-    for(let i = 0; i < articles.length; i++){
-      const newCard = Card(articles[i], 1);
-      entryPoint.appendChild(newCard);
-    }
-
-    // articles.forEach(({element}) => {
-    //   const newArticles = Card({ element});
-    //   entryPoint.appendChild(newArticles);
-    //   console.log(newArticles);
-    // });
-  });
-};
 
 // TASK 6
 // ---------------------
@@ -88,3 +83,22 @@ const cardAppender = (selector) => {
 //
 
 export { Card, cardAppender };
+
+//ideas
+
+// const articleArray = [];
+
+// const javaScript = articles.javascript;
+// const bootStrap = articles.bootstrap;
+// const technology = articles.technology;
+// const jquery = articles.jquery;
+// const node = articles.node;
+
+// articleArray.push(javaScript, bootStrap, technology, jquery, node);
+// console.log(articleArray);
+
+// articles.forEach((i) => {
+//   const newArticles = Card(i);
+//   entryPoint.appendChild(newArticles);
+//   console.log(newArticles);
+// });
