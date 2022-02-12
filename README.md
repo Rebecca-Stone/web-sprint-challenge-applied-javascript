@@ -61,11 +61,15 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 1. What is the DOM?
     Document Object Model that represents the page, so that programs can change the document structure 
+
 2. What is an event?
-    An event is also known as a trigger. it is something the user does to interact with the site
+    An event is also known as a trigger. it is something the user does to interact with the site, like a click, mouseover, or scroll. 
+
 3. What is an event listener?
     An event listener is what catches the event/trigger. it will then cause something within the code to happen
+
 4. Why would we convert a NodeList into an Array?
-    to iterate over them easier 
+    to iterate over them easier, to access the information inside 
+
 5. What is a component?
-    A componet is a function that usually create things for us 
+    A componet is a function that usually create things for us, like HTML markup

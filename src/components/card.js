@@ -11,9 +11,6 @@ const Card = (article) => {
   const imgContainer = document.createElement("div");
   const authorImg = document.createElement("img");
   const author = document.createElement("span");
-  // const headline = article.headline;
-  // const authorPhoto = article.authorPhoto;
-  // const authorName = article.authorname;
 
   // The tags used, the hierarchy of elements and their attributes must match the provided markup exactly!
   articleWrapper.classList.add("card");
@@ -50,6 +47,8 @@ const Card = (article) => {
   });
   return articleWrapper;
 };
+
+
 // TASK 6
 // ---------------------
 // Implement this function that takes a css selector as its only argument.
@@ -98,14 +97,4 @@ const cardAppender = (selector) => {
     .catch((err) => console.error(err));
 };
 
-//
-
 export { Card, cardAppender };
-
-//ideas
-
-// article.forEach((i) => {
-//   const newArticles = Card(i);
-//   entryPoint.appendChild(newArticles);
-//   console.log(newArticles);
-// });

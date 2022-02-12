@@ -13,7 +13,6 @@ const Header = (title, date, temp) => {
   tempSpan.classList.add("temp");
 
   // The text inside elements will be set using their `textContent` property (NOT `innerText`).
-  //
   dateSpan.textContent = date;
   headerTitle.textContent = title;
   tempSpan.textContent = temp;

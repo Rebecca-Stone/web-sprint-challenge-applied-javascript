@@ -16,11 +16,13 @@ const Tabs = (topics) => {
   const parentElement = document.createElement("div");
 
   parentElement.classList.add("topics");
+  
   // The tags used, the hierarchy of elements and their attributes must match the provided markup!
   for (let i = 0; i < topics.length; i++) {
     const tabs = document.createElement("div");
     parentElement.appendChild(tabs);
     tabs.classList.add("tab");
+
     // The text inside elements will be set using their `textContent` property (NOT `innerText`).
     tabs.textContent = topics[i];
   }
